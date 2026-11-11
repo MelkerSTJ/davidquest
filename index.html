@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b0f1a" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title>DavidQuest – Riddaren som lagar fibernätet</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><text y='52' font-size='52'>⚔️</text></svg>" />
+</head>
+<body>
+  <canvas id="game"></canvas>
+
+  <!-- Laddning -->
+  <div id="loading" class="screen">
+    <div class="loading-inner">
+      <div class="logo small">DavidQuest</div>
+      <div class="load-bar"><div id="load-fill"></div></div>
+      <div id="load-text">Smider rustningen…</div>
+    </div>
+  </div>
+
+  <!-- Titel -->
+  <div id="title" class="screen hidden">
+    <div class="title-top">
+      <div class="logo">DavidQuest</div>
+      <div class="subtitle">Riddaren som lagar fibernätet</div>
+    </div>
+    <div class="title-bottom">
+      <p class="tagline">Grävlingarna har grävt av fibern. Riket är offline.<br />Bara en riddare kan skarva ljuset tillbaka.</p>
+      <button id="btn-start" class="btn-primary">Börja äventyret</button>
+      <div class="title-hint" id="title-hint"></div>
+    </div>
+  </div>
+
+  <!-- Dialog -->
+  <div id="dialog" class="screen hidden">
+    <div class="card">
+      <div class="card-head"><span class="crown">👑</span><div><div class="card-kicker">Bud från Huvudcentralen</div><div class="card-title" id="dialog-title"></div></div></div>
+      <div class="card-body" id="dialog-body"></div>
+      <button id="dialog-btn" class="btn-primary">OK</button>
+    </div>
+  </div>
+
+  <!-- HUD -->
+  <div id="hud" class="hidden">
+    <div class="hud-tl">
+      <div class="portrait"><img id="portrait-img" alt="Sir David" /></div>
+      <div class="hud-tl-text">
+        <div class="hero-name">Sir David</div>
+        <div id="hearts"></div>
+      </div>
+    </div>
+    <div class="hud-top">
+      <div id="objective"></div>
+      <div id="compass"><span id="compass-arrow">➤</span><span id="compass-text"></span></div>
+    </div>
+    <div class="hud-tr">
+      <button class="icon-btn" id="btn-selfie" title="Selfie-kamera (C)">🤳</button>
+      <button class="icon-btn" id="btn-mute" title="Ljud (M)">🔊</button>
+    </div>
+    <div id="bossbar" class="hidden">
+      <div class="boss-name">Grävskopan – Fiberdödaren</div>
+      <div class="boss-track"><div id="boss-fill"></div></div>
+    </div>
+    <div id="toast"></div>
+    <div id="prompt" class="hidden"></div>
+    <div id="keys-hint"></div>
+    <!-- Touch -->
+    <div id="touch-ui" class="hidden">
+      <div id="joy-base"><div id="joy-knob"></div></div>
+      <button id="t-interact" class="t-btn t-interact hidden">🔧<span>Laga</span></button>
+      <button id="t-dash" class="t-btn t-dash">💨</button>
+      <button id="t-attack" class="t-btn t-attack">⚔️</button>
+    </div>
+  </div>
+
+  <!-- Skarvning -->
+  <div id="splice" class="screen hidden">
+    <div class="splice-card">
+      <div class="splice-head">
+        <div>
+          <div class="card-kicker" id="splice-node"></div>
+          <div class="splice-title">Skarva fibern!</div>
+        </div>
+        <div class="splice-timer"><div id="splice-time"></div></div>
+      </div>
+      <div class="splice-help">Tryck en fiber till vänster, sen samma färg till höger. Följ färgkoden!</div>
+      <div class="splice-board" id="splice-board">
+        <svg id="splice-svg"></svg>
+        <div class="splice-col" id="splice-left"></div>
+        <div class="splice-mid"><div class="fusion">⚡</div></div>
+        <div class="splice-col" id="splice-right"></div>
+      </div>
+      <div class="splice-foot" id="splice-foot"></div>
+    </div>
+  </div>
+
+  <!-- Död -->
+  <div id="dead" class="screen hidden">
+    <div class="card center">
+      <div class="card-title big">Sir David har fallit…</div>
+      <div class="card-body">…men fibern väntar. Huvudcentralens ljus väcker dig vid slottet.</div>
+      <button id="btn-respawn" class="btn-primary">Res dig igen</button>
+    </div>
+  </div>
+
+  <!-- Seger -->
+  <div id="victory" class="screen hidden">
+    <div class="victory-inner">
+      <div class="logo">Riket är online!</div>
+      <div class="subtitle">Sir David har skarvat ljuset tillbaka till varenda gård.</div>
+      <div class="stats" id="stats"></div>
+      <button id="btn-again" class="btn-primary">Spela igen</button>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
